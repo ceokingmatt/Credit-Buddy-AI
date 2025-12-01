@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- SEO Metadata -->
+    <title>Credit Buddy AI - Automate Your Credit Repair & Boost Scores</title>
+    <meta name="description" content="Fix your credit score fast with Credit Buddy AI. Our advanced engine scans your report, identifies Metro 2 errors, and generates legally compliant (FCRA) dispute letters to remove negative items like collections and late payments." />
+    <meta name="keywords" content="credit repair, AI credit dispute, remove collections, increase credit score, fix credit report, Metro 2 compliance, FCRA dispute letters, credit repair software, DIY credit repair, delete charge offs" />
+    <meta name="author" content="Credit Buddy AI" />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://creditbuddy.ai/" />
+    <meta property="og:title" content="Credit Buddy AI - Automate Your Credit Repair" />
+    <meta property="og:description" content="Stop using generic templates. Credit Buddy AI analyzes your report code to find errors and generate custom legal disputes that get results." />
+    <meta property="og:image" content="https://cdn.dribbble.com/users/1787323/screenshots/11327170/media/c03378393526bc59f8a3299763784192.png?resize=1200x630" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://creditbuddy.ai/" />
+    <meta property="twitter:title" content="Credit Buddy AI - Automate Your Credit Repair" />
+    <meta property="twitter:description" content="Stop using generic templates. Credit Buddy AI analyzes your report code to find errors and generate custom legal disputes that get results." />
+    <meta property="twitter:image" content="https://cdn.dribbble.com/users/1787323/screenshots/11327170/media/c03378393526bc59f8a3299763784192.png?resize=1200x630" />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://js.stripe.com/v3/"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              brand: {
+                neon: '#FF3B30', // Bold Red (Main Brand)
+                soft: '#F3F4F6', // Light Grey (Backgrounds)
+                orange: '#111827', // Mapped to Black (Removing Orange)
+                purple: '#374151', // Mapped to Dark Grey (Removing Purple)
+                dark: '#111827', 
+                panel: '#FFFFFF', 
+                gray: '#F9FAFB',
+                surface: '#FFFFFF',
+                text: '#111827', 
+                muted: '#6B7280'
+              }
+            },
+            fontFamily: {
+              sans: ['Inter', 'system-ui', 'sans-serif'],
+              mono: ['JetBrains Mono', 'monospace'],
+              signature: ['Dancing Script', 'cursive'],
+              hand: ['Caveat', 'cursive']
+            },
+            animation: {
+              'fade-in': 'fadeIn 0.5s ease-out',
+              'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+              'blob': 'blob 7s infinite',
+              'float': 'float 6s ease-in-out infinite',
+            },
+            backgroundImage: {
+              'noise': "url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0IiBoZWlnaHQ9IjQiPjxyZWN0IHdpZHRoPSI0IiBoZWlnaHQ9IjQiIGZpbGw9IiMxMjEyMTIiLz48cmVjdCB3aWR0aD0iMSIgaGVpZ2h0PSIxIiBmaWxsPSIjMjUyNTI1Ii8+PC9zdmc+')",
+            },
+            keyframes: {
+              fadeIn: {
+                '0%': { opacity: '0', transform: 'translateY(10px)' },
+                '100%': { opacity: '1', transform: 'translateY(0)' }
+              },
+              blob: {
+                '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                '100%': { transform: 'translate(0px, 0px) scale(1)' }
+              },
+              float: {
+                '0%, 100%': { transform: 'translateY(0)' },
+                '50%': { transform: 'translateY(-20px)' }
+              }
+            }
+          }
+        }
+      }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=JetBrains+Mono:wght@400;500&family=Dancing+Script:wght@700&family=Caveat:wght@600&display=swap" rel="stylesheet">
+    <style>
+      body {
+        background-color: #FFFFFF;
+        color: #111827;
+        font-family: 'Inter', sans-serif;
+        -webkit-font-smoothing: antialiased;
+        /* Updated: Clean White to Grey Fade */
+        background: linear-gradient(180deg, #FFFFFF 0%, #F3F4F6 100%);
+        background-attachment: fixed;
+        min-height: 100vh;
+      }
+      
+      /* Add a subtle noise over the gradient */
+      body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.4'/%3E%3C/svg%3E");
+        opacity: 0.15;
+        z-index: -1;
+      }
+
+      /* Custom Scrollbar */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #9CA3AF;
+        border-radius: 4px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #4B5563;
+      }
+      
+      /* Light Mode Glass Panels */
+      .glass-panel {
+        background: rgba(255, 255, 255, 0.9);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid rgba(0, 0, 0, 0.05);
+      }
+
+      .glass-card {
+        background: #FFFFFF;
+        border: 1px solid #E5E7EB; 
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+      }
+      
+      /* Text Selection Color */
+      ::selection {
+        background: rgba(17, 24, 39, 0.9); /* Black selection */
+        color: #FFF;
+      }
+
+      /* ========================================= */
+      /* PRINT STYLES - CLEAN PDF GENERATION       */
+      /* ========================================= */
+      @media print {
+        body, html {
+          background: white !important;
+          height: auto !important;
+          overflow: visible !important;
+        }
+
+        /* Hide Everything by default */
+        body > * {
+          display: none !important;
+        }
+
+        /* Only show the Printable Document container */
+        .printable-document {
+          display: block !important;
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          margin: 0;
+          padding: 20mm; /* Standard letter margins */
+          font-family: 'Times New Roman', Times, serif; /* Professional Font for Letters */
+          font-size: 12pt;
+          line-height: 1.5;
+          color: black;
+          background: white;
+          z-index: 9999;
+          white-space: pre-wrap; /* Preserve formatting */
+        }
+        
+        .printable-document .signature-font {
+             font-family: 'Dancing Script', cursive !important;
+             font-size: 24pt !important;
+             margin-top: 20px;
+        }
+
+        /* Hide noises, gradients, scrollbars */
+        body::before { display: none !important; }
+        ::-webkit-scrollbar { display: none !important; }
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.30.0",
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.554.0",
+    "canvas-confetti": "https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/+esm"
+  }
+}
+</script>
+</head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
